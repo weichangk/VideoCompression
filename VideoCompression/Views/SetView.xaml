@@ -1,0 +1,106 @@
+﻿<UserControl
+    x:Class="VideoCompression.Views.SetView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VideoCompression.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="16"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    mc:Ignorable="d">
+    <Border
+        Background="#202031"
+        BorderBrush="#575766"
+        BorderThickness="1"
+        CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition />
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+            <StackPanel Margin="4" Orientation="Horizontal">
+                <RadioButton
+                    Width="130"
+                    Margin="4"
+                    IsChecked="False"
+                    Style="{StaticResource MaterialDesignTabRadioButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon
+                            Width="18"
+                            Height="18"
+                            Kind="Star" />
+                        <TextBlock
+                            Margin="4,0,0,0"
+                            FontSize="16"
+                            FontWeight="Regular"
+                            Text="快捷设置" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton
+                    Width="130"
+                    Margin="4"
+                    IsChecked="True"
+                    Style="{StaticResource MaterialDesignTabRadioButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon
+                            Width="18"
+                            Height="18"
+                            Kind="Heart" />
+                        <TextBlock
+                            Margin="4,0,0,0"
+                            FontSize="16"
+                            FontWeight="Regular"
+                            Text="高级设置" />
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="SetTypeTabRegion" />
+            <StackPanel Grid.Row="2">
+                <ComboBox
+                    Margin="10"
+                    md:HintAssist.Hint=""
+                    md:TextFieldAssist.PrefixText="输出格式："
+                    IsEditable="False">
+                    <ComboBoxItem Content="Android" />
+                    <ComboBoxItem Content="iOS" />
+                    <ComboBoxItem Content="Linux" />
+                    <ComboBoxItem Content="Windows" />
+                </ComboBox>
+                <ComboBox
+                    Margin="10"
+                    md:HintAssist.Hint=""
+                    md:TextFieldAssist.PrefixText="输出目录："
+                    IsEditable="False">
+                    <ComboBoxItem Content="Android" />
+                    <ComboBoxItem Content="iOS" />
+                    <ComboBoxItem Content="Linux" />
+                    <ComboBoxItem Content="Windows" />
+                </ComboBox>
+                <DockPanel Margin="10,0">
+                    <TextBlock VerticalAlignment="Center" Text="Display Small" />
+                    <Button
+                        Width="60"
+                        Height="40"
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding SendOperCommand}"
+                        CommandParameter="">
+                        <md:PackIcon
+                            Width="32"
+                            Height="32"
+                            Margin="-3,-1,0,0"
+                            Kind="FolderOpenOutline" />
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
