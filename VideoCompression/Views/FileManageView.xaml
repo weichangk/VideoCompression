@@ -1,0 +1,80 @@
+﻿<UserControl
+    x:Class="VideoCompression.Views.FileManageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VideoCompression.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="16"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    mc:Ignorable="d">
+    <Border
+        Background="#202031"
+        BorderBrush="#575766"
+        BorderThickness="1"
+        CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="3" />
+                <!--<RowDefinition Height="45" />-->
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <DockPanel>
+                <Button
+                    Height="50"
+                    Margin="10,0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding SendOperCommand}"
+                    CommandParameter="">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <md:PackIcon
+                            Width="19"
+                            Height="19"
+                            Margin="0,-1,5,0"
+                            Kind="PlusCircleOutline" />
+                        <TextBlock Text="添加文件" />
+                    </StackPanel>
+                </Button>
+                <Button
+                    Height="50"
+                    Margin="10,0"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding SendOperCommand}"
+                    CommandParameter="">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <md:PackIcon
+                            Width="19"
+                            Height="19"
+                            Margin="0,-1,5,0"
+                            Kind="DeleteForeverOutline" />
+                        <TextBlock Text="清空" />
+                    </StackPanel>
+                </Button>
+
+
+            </DockPanel>
+            <!--<local:FileInfoHeadView Grid.Row="2" Margin="10,0" />-->
+            <Rectangle
+                Grid.Row="1"
+                Height="1"
+                Margin="10,0,10,0"
+                Fill="#575766" />
+            <Grid Grid.Row="3">
+                <Image Source="/Images/addfile.png" Stretch="None" />
+            </Grid>
+            <Grid Grid.Row="3">
+                <ContentControl Margin="10" prism:RegionManager.RegionName="FileListRegion" />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

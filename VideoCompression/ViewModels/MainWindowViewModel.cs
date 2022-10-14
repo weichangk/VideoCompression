@@ -28,7 +28,7 @@ public class MainWindowViewModel : BindableBase, IHeadOper
     private void Configure()
     {
         regionManager.RegisterViewWithRegion("HeadRegion", typeof(HeadView));
-        regionManager.RegisterViewWithRegion("ContentRegion", typeof(FileListView));
+        regionManager.RegisterViewWithRegion("ContentRegion", typeof(FileManageView));
         regionManager.RegisterViewWithRegion("SetRegion", typeof(SetView));
 
         ea.GetEvent<HeadOperEvent>().Subscribe(HeadOperReceived);
