@@ -14,32 +14,214 @@
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     mc:Ignorable="d">
-    <ListView ItemsSource="{Binding Items1}">
-        <ListView.View>
-            <GridView>
-                <GridViewColumn
-                    Width="0"
-                    DisplayMemberBinding="{Binding Select}"
-                    Header="" />
-                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="名称" />
-                <GridViewColumn DisplayMemberBinding="{Binding Size}" Header="大小" />
-                <GridViewColumn DisplayMemberBinding="{Binding Resolution}" Header="分辨率" />
-                <!--<GridViewColumn DisplayMemberBinding="{Binding OutResolution}" Header="输出分辨率" />
-                <GridViewColumn DisplayMemberBinding="{Binding OutSize}" Header="输出大小" />
-                <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="状态" />-->
-                <GridViewColumn DisplayMemberBinding="{Binding Operation}" Header="操作" />
-                <GridViewColumn Header="Options">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox Width="100">
-                                <ComboBoxItem Content="Test" />
-                                <ComboBoxItem Content="Test2" />
-                                <ComboBoxItem Content="Test3" />
-                            </ComboBox>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-            </GridView>
-        </ListView.View>
-    </ListView>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="col1" Grid.Column="0" />
+            <Grid x:Name="col2" Grid.Column="1" />
+            <Grid x:Name="col3" Grid.Column="2" />
+            <Grid x:Name="col4" Grid.Column="3" />
+            <Grid x:Name="col5" Grid.Column="4" />
+        </Grid>
+        <ListView ItemsSource="{Binding FileDatas}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+                <!--<Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="2" />
+                </Style>-->
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="{Binding ElementName=col1, Path=ActualWidth}">
+                        <GridViewColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsMainSelected}" />
+                            </DataTemplate>
+                        </GridViewColumn.HeaderTemplate>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding ElementName=col2, Path=ActualWidth}" Header="压缩前">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="3"
+                                    Background="Transparent"
+                                    BorderBrush="#575766"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                    <Grid Width="{Binding ElementName=col2, Path=ActualWidth}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <md:PackIcon Kind="FolderPlayOutline" />
+                                            <TextBlock Text="{Binding Name}" />
+                                        </StackPanel>
+                                        <Grid Grid.Row="1" Margin="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <md:PackIcon Kind="VideoStabilization" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <md:PackIcon Kind="ClockOutline" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="2" Margin="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <md:PackIcon Kind="FolderInformationOutline" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <md:PackIcon Kind="AspectRatio" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding ElementName=col3, Path=ActualWidth}" Header="状态">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="{Binding ElementName=col3, Path=ActualWidth}" Margin="0,10,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding Status}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1">
+                                        <ProgressBar
+                                            IsIndeterminate="True"
+                                            Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                            Value="50" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2">
+                                        <md:PackIcon
+                                            Width="100"
+                                            Height="30"
+                                            HorizontalAlignment="Center"
+                                            Kind="TransferRight" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding ElementName=col4, Path=ActualWidth}" Header="压缩后">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    Background="Transparent"
+                                    BorderBrush="#575766"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                    <Grid Width="{Binding ElementName=col4, Path=ActualWidth}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Margin="3" Orientation="Horizontal">
+                                            <md:PackIcon Kind="FolderPlayOutline" />
+                                            <TextBlock Text="{Binding Name}" />
+                                            <md:PackIcon Kind="FileDocumentEditOutline" />
+                                        </StackPanel>
+                                        <Grid Grid.Row="1" Margin="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="4*" />
+                                                <ColumnDefinition Width="6*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <md:PackIcon Kind="VideoStabilization" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <md:PackIcon Kind="ClockOutline" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="2" Margin="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="4*" />
+                                                <ColumnDefinition Width="6*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <md:PackIcon Kind="FolderInformationOutline" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                <md:PackIcon Kind="AspectRatio" />
+                                                <TextBlock Text="{Binding Size}" />
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="{Binding ElementName=col5, Path=ActualWidth}" Header="操作">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<ComboBox Width="60">
+                                    <ComboBoxItem Content="Test" />
+                                    <ComboBoxItem Content="Test2" />
+                                    <ComboBoxItem Content="Test3" />
+                                </ComboBox>-->
+                                <Grid Width="{Binding ElementName=col5, Path=ActualWidth}" Margin="-10,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Margin="0,8,0,0">
+                                        <md:PackIcon
+                                            Width="26"
+                                            Height="26"
+                                            HorizontalAlignment="Center"
+                                            Kind="DeleteCircleOutline" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="0,8,0,0">
+                                        <md:PackIcon
+                                            Width="26"
+                                            Height="26"
+                                            HorizontalAlignment="Center"
+                                            Kind="ArrowRightDropCircleOutline" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+
 </UserControl>

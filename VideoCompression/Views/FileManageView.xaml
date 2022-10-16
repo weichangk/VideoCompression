@@ -27,39 +27,39 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <DockPanel>
-                <Button
-                    Height="50"
-                    Margin="10,0"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{Binding SendOperCommand}"
-                    CommandParameter="">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <md:PackIcon
-                            Width="19"
-                            Height="19"
-                            Margin="0,-1,5,0"
-                            Kind="PlusCircleOutline" />
-                        <TextBlock Text="添加文件" />
-                    </StackPanel>
-                </Button>
-                <Button
-                    Height="50"
-                    Margin="10,0"
+                <CheckBox
+                    Margin="25,0"
                     HorizontalAlignment="Right"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{Binding SendOperCommand}"
-                    CommandParameter="">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    Content="" />
+
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button
+                        Height="50"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding SendOperCommand}"
+                        CommandParameter="">
                         <md:PackIcon
-                            Width="19"
-                            Height="19"
-                            Margin="0,-1,5,0"
-                            Kind="DeleteForeverOutline" />
-                        <TextBlock Text="清空" />
-                    </StackPanel>
-                </Button>
+                            Width="26"
+                            Height="26"
+                            Kind="FilePlusOutline" />
+                    </Button>
+
+                    <Button
+                        Height="50"
+                        Margin="0,0,5,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding SendOperCommand}"
+                        CommandParameter=""
+                        Cursor="Hand">
+                        <md:PackIcon
+                            Width="26"
+                            Height="26"
+                            Kind="FileRemoveOutline" />
+                    </Button>
+                </StackPanel>
+
 
 
             </DockPanel>
