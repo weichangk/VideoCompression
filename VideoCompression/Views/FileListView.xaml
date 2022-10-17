@@ -29,7 +29,10 @@
             <Grid x:Name="col4" Grid.Column="3" />
             <Grid x:Name="col5" Grid.Column="4" />
         </Grid>
-        <ListView ItemsSource="{Binding FileDatas}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ListView
+            ItemsSource="{Binding FileDatas}"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.Resources>
                 <Style TargetType="{x:Type GridViewColumnHeader}">
                     <Setter Property="Visibility" Value="Collapsed" />
@@ -77,11 +80,11 @@
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                <md:PackIcon Kind="VideoStabilization" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <md:PackIcon Kind="TimerSandPaused" />
+                                                <TextBlock Text="{Binding Duration}" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                                <md:PackIcon Kind="ClockOutline" />
+                                                <md:PackIcon Kind="VideoStabilization" />
                                                 <TextBlock Text="{Binding Size}" />
                                             </StackPanel>
                                         </Grid>
@@ -92,11 +95,11 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                                 <md:PackIcon Kind="FolderInformationOutline" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <TextBlock Text="{Binding Format}" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
                                                 <md:PackIcon Kind="AspectRatio" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <TextBlock Text="{Binding Resolution}" />
                                             </StackPanel>
                                         </Grid>
 
@@ -138,7 +141,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Border
-                                    Padding="5"
+                                    Padding="3"
                                     Background="Transparent"
                                     BorderBrush="#575766"
                                     BorderThickness="1"
@@ -160,12 +163,12 @@
                                                 <ColumnDefinition Width="6*" />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                <md:PackIcon Kind="VideoStabilization" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <md:PackIcon Kind="TimerSandPaused" />
+                                                <TextBlock Text="{Binding Duration}" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                                <md:PackIcon Kind="ClockOutline" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <md:PackIcon Kind="VideoStabilization" />
+                                                <TextBlock Text="{Binding OutSize}" />
                                             </StackPanel>
                                         </Grid>
                                         <Grid Grid.Row="2" Margin="3">
@@ -175,11 +178,11 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Orientation="Horizontal">
                                                 <md:PackIcon Kind="FolderInformationOutline" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <TextBlock Text="{Binding OutFormat}" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal">
                                                 <md:PackIcon Kind="AspectRatio" />
-                                                <TextBlock Text="{Binding Size}" />
+                                                <TextBlock Text="{Binding OutResolution}" />
                                             </StackPanel>
                                         </Grid>
 

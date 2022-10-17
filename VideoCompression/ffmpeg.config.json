@@ -1,0 +1,5 @@
+{
+  "RootDirectory": "",
+  "BinaryFolder": ".\\FFMpeg\\bin",
+  "TemporaryFilesFolder": ".\\temp"
+}
